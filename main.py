@@ -1,6 +1,7 @@
+
 ## main.py
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from calculator import Calculator
 
 app = Flask(__name__)
@@ -25,6 +26,10 @@ class Main:
             raise ValueError(f"Unsupported operation: {operation}")
 
 main_instance = Main()
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/calculate', methods=['POST'])
 def calculate():
